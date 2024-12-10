@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en"><head>
+		<title>lofi generator</title>
+		<meta name="description" content="Listen to endless royalty-free lofi hiphop tracks, algorithmically generated and free to use as background music in streams, videos and more.">
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Dylan Turner">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;500&amp;display=swap" rel="stylesheet">
+		<link rel="icon" href="images/icon.svg">
+		<script defer="" data-domain="lofigenerator.com" src="js/plausible.js"></script>
+	</head>
+	<body>
+		<div id="bg"></div>
+		<div id="content">
+			<div id="header">ｌｏｆｉ　ｇｅｎｅｒａｔｏｒ</div>
+			<div id="subheader">beats for video / streaming / chilling</div>
+			<div id="main">
+				<a id="download" class="link" onclick="downloadClick()">【﻿ｇｅｔ　ｔｒａｃｋ　ｄｏｗｎｌｏａｄｓ】</a>
+				<div id="loader" class="visualiser"></div>
+				<div id="play-stop" class="visualiser" onclick="playClick()"></div>
+
+				<div id="controls">
+					<div id="volContainer" ontouchstart="volTouch(event)" onmousedown="volClick(event)">
+						<div id="volSpeaker" class="vol"></div>
+						<div id="volLow" class="vol"></div>
+						<div id="volHigh" class="vol"></div>
+						<div id="volCover" class="vol"><div id="volCoverBg"></div></div>
+						<div id="volDial" class="vol"></div>
+					</div>
+					<div id="skip" onmousedown="skipClick()"></div>
+					<div id="more" onclick="moreClick()"></div>
+				</div>
+				<div id="divider"></div>
+				<div id="more-menu">
+					<a class="more-options link" onclick="aboutClick()">about /<br>contact</a>
+					<a class="more-options link coming-soon"><span>drum<br>samples</span></a>
+					<a class="more-options link" target="_blank" href="https://dylanturner.dev">other<br>projects</a>
+				</div>
+			</div>
+			<div id="aboutPage">
+				<p>Hi, I’m <a class="link highlight" target="_blank" href="https://dylanturner.dev">Dylan</a> and this is a site I made that algorithmically generates royalty-free lofi hip-hop. It’s free to use, with no ads and no sign-up required.</p>
+				<p>You’re welcome to use the music in your projects, commercial or otherwise, and you generally don’t even have to provide an attribution if you don’t want to. <a class="link highlight" target="_blank" href="/license">More about that here</a>.</p>
+				<p>If the online player doesn't cut it and you need high quality files, you can purchase a unique or curated collection of tracks from <a class="link highlight" onclick="downloadClick()">the downloads page</a>.</p>
+				<p>Feel free to reach out via <a id="mail" class="link highlight">email</a> if you have any questions, feedback or suggestions.</p>
+				<p>Thanks for using this site! Hope you find it useful :)</p><br>
+				<div style="text-align:center;">
+					<a class="link" onclick="backClick()">back</a>
+				</div>
+			</div>
+			<div id="processingPage">
+				<div id="processingPageMessage">
+					<h2>processing your purchase...</h2>
+					Confirming stock and retrieving your download link.
+				</div>
+				<div style="text-align:center;">
+					<div id="processingLoader"></div>
+					<br>
+					<a id="processingBackLink" class="link" onclick="backClick()">back</a>
+				</div>
+			</div>
+			<div id="downloadPage">
+					<span>High quality audio files to use in your projects<br>- no attribution, no royalties. <a class="highlight link" target="_blank" href="/license">Learn more.</a></span>
+					<br><br>
+					<a id="usd" class="link selected" onclick="selectCurrency('usd')">usd</a>|<a id="aud" class="link" onclick="selectCurrency('aud')">aud</a>
+					<div class="tiles">
+						<div class="tile-container">
+							<div class="value-indicator"></div>
+							<div class="tile">
+								<h2>20 <b>unique</b> <br>tracks</h2>
+								<span>~35 minutes of music, freshly generated and never before heard.</span>
+								<h1 id="LFU20price">$4</h1>
+								<a id="LFU20btn" class="btn">�&nbsp;</a>
+								<ul>
+									<li>.wav files (16/44.1)</li>
+									<li>Royalty-free</li>
+									<li><b id="LFU20ppt">$0.20</b> per track</li>
+								</ul>
+							</div>
+							<span id="LFU20stock" class="stock-indicator">checking stock...</span>
+						</div>
+
+						<div class="tile-container">
+							<div class="value-indicator">best value</div>
+							<div class="tile primary-tile">
+								<h2>100 <b>unique</b> <br>tracks</h2>
+								<span>Over 3 hours of music, freshly generated and never before heard.</span>
+								<h1 id="LFU100price">$8</h1>
+								<a id="LFU100btn" class="btn">�&nbsp;</a>
+								<ul>
+									<li>.wav files (16/44.1)</li>
+									<li>Royalty-free</li>
+									<li><b id="LFU100ppt">$0.08</b> per track</li>
+								</ul>
+							</div>
+							<span id="LFU100stock" class="stock-indicator">checking stock...</span>
+						</div>
+
+						<div class="tile-container">
+							<div class="value-indicator"></div>
+							<div class="tile">
+								<h2>50 <b>curated</b> <br>tracks</h2>
+								<span>A 90 minute album consisting of 50 varied tracks.</span>
+								<h1 id="LFC50price">~$7</h1>
+								<a class="btn" target="_blank" href="https://dylanturner.bandcamp.com/album/generated-beats-volume-1">Go to Bandcamp</a>
+								<ul>
+									<li>Choose your own file type</li>
+									<li>Royalty-free</li>
+									<li><b id="LFC50ppt">$0.14</b> per track</li>
+								</ul>
+							</div>
+							<span class="stock-indicator">always available</span>
+							<div id="tile-divider"></div>
+						</div>
+				</div>
+				<div style="text-align:center;">
+					<a class="link" onclick="backClick()">back</a>
+				</div>
+			</div>
+		</div>
+		<div id="footer">
+			<a class="link" target="_blank" href="/privacy">privacy policy</a>�&nbsp;�&nbsp;�&nbsp;<a class="link" target="_blank" href="/license">licensing</a>
+		</div>
+		<script src="js/a7bd46e8c8598648138bb130ec31a1f1c7b52405.js"></script>
+		<script defer="" src="https://js.stripe.com/v3/"></script>
+	
+
+</body></html>
